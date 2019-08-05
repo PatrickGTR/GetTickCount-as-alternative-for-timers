@@ -96,18 +96,21 @@ OnPlayerInteractWithServer(playerid)
 
         return 0;
     }
-}```
+}
+```
 
 There’s a lot less code there, no need for a public function or a timer. If you really want to, you can put the remaining time in the error message:
+
 (I’m using SendFormatMessage, which isn’t a native function, in this example)
+
 ```pawn
-SendFormatMessage(playerid, -1, "You are not allowed to do that yet! You can again in %d ms",
-    10000 - (tickcount() - gPlayerAllowedTick[playerid]));
+SendFormatMessage(playerid, -1, "You are not allowed to do that yet! You can again in %d ms", 10000 - (tickcount() - gPlayerAllowedTick[playerid]));
 ```
 
 That’s a very basic example, it would be better to convert that MS value into a string of “minuteseconds.milliseconds” but I’ll post that code at the end.
 
 Hopefully you can see how powerful this is to get intervals between events, let’s look at another example
+
 ```pawn
 new
     gPlayerStopWatchTick[MAX_PLAYERS];
